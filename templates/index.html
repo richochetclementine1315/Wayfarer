@@ -1,1 +1,203 @@
-<!-- Jinja2 Template a likhte hobe just emni -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wayfarer — AI Travel Planner</title>
+    <meta name="description"
+        content="Wayfarer is an AI-powered multi-agent travel planner. Get flights, hotels, and itineraries in seconds." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body>
+
+    <!-- ── NAV ───────────────────────────────────────── -->
+    <nav class="nav">
+        <a class="nav-logo" href="#"><span>Way</span>farer</a>
+        <ul class="nav-links">
+            <li><a href="#gallery">Explore</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#chat">Plan Trip</a></li>
+        </ul>
+    </nav>
+
+    <!-- ── HERO ──────────────────────────────────────── -->
+    <section class="hero" id="home">
+        <!-- Decorative grid -->
+        <div class="hero-grid" aria-hidden="true">
+            {% for i in range(96) %}
+            <div class="hero-grid-cell"></div>
+            {% endfor %}
+        </div>
+
+        <div class="hero-tag">AI · Multi-Agent · Travel</div>
+
+        <h1 class="hero-title">
+            <span class="line"><span>Go</span></span>
+            <span class="line"><span class="accent-word">Any</span></span>
+            <span class="line"><span class="outline-word">Where.</span></span>
+        </h1>
+
+        <p class="hero-sub">
+            Your intelligent travel companion. Powered by multi-agent AI — flights, hotels, and full itineraries planned
+            in one conversation.
+        </p>
+
+        <div class="hero-cta">
+            <a href="#chat" class="btn btn-primary">Start Planning →</a>
+            <a href="#gallery" class="btn">Explore Destinations</a>
+        </div>
+
+        <div class="hero-scroll-hint">Scroll to explore</div>
+    </section>
+
+    <!-- ── TICKER ─────────────────────────────────────── -->
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-inner">
+            {% set ticks = ['Flights', 'Hotels', 'Itineraries', 'City Guides', 'Weather', 'Budget Planner', 'AI Agents',
+            'Multi-City', 'Real-Time', 'Instant Results'] %}
+            {% for _ in range(4) %}
+            {% for t in ticks %}
+            <span class="ticker-item">{{ t }}</span>
+            <span class="ticker-item ticker-sep">✦</span>
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- ── STATS ──────────────────────────────────────── -->
+    <div class="stats-strip" data-reveal>
+        <div class="stat-item">
+            <span class="stat-number" data-count="200" data-suffix="+">200+</span>
+            <span class="stat-label">Destinations</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" data-count="4.9" data-suffix="★">4.9★</span>
+            <span class="stat-label">Avg Rating</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" data-count="12" data-suffix="s">12s</span>
+            <span class="stat-label">Avg Response</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number" data-count="5">5</span>
+            <span class="stat-label">AI Agents</span>
+        </div>
+    </div>
+
+    <!-- ── GALLERY SECTION ────────────────────────────── -->
+    <section class="section" id="gallery">
+        <div class="section-label">Explore</div>
+        <h2 class="section-title" data-reveal>
+            <span class="glitch" data-text="Destinations">Destinations</span>
+        </h2>
+        <p class="section-desc" data-reveal>Hover to discover the world's most sought-after travel destinations — from
+            canyon trails to urban skylines.</p>
+
+        <!-- AccordionGallery renders here -->
+        <div id="accordionGallery" role="list" aria-label="Image accordion gallery"></div>
+    </section>
+
+    <!-- ── SERVICES SECTION (FlowingMenu) ─────────────── -->
+    <section class="section" id="services" style="padding-bottom: 0;">
+        <div class="section-label">Services</div>
+        <h2 class="section-title" data-reveal>What We Plan</h2>
+        <p class="section-desc" data-reveal>From budget flights to luxury stays — our AI agents handle every detail.</p>
+    </section>
+
+    <!-- FlowingMenu renders here — full bleed -->
+    <div id="flowingMenu" style="min-height: 480px;" aria-label="Services menu"></div>
+
+    <!-- ── CHAT SECTION ───────────────────────────────── -->
+    <section class="chat-section" id="chat">
+        <!-- Info column -->
+        <div class="chat-info">
+            <div class="section-label">AI Planner</div>
+            <h2 class="section-title" data-reveal>Plan Your<br><span style="color:var(--accent)">Dream</span><br>Trip
+            </h2>
+            <p class="section-desc" data-reveal style="margin-bottom:1.5rem;">
+                Talk to Wayfarer's multi-agent AI. Just describe your trip — we'll handle flights, hotels, weather, and
+                a day-by-day itinerary.
+            </p>
+
+            <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:2rem;" data-reveal>
+                <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.85rem;color:var(--text-dim);">
+                    <span style="color:var(--accent);font-family:var(--mono);font-weight:700;">01</span>
+                    Describe your trip in natural language
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.85rem;color:var(--text-dim);">
+                    <span style="color:var(--accent);font-family:var(--mono);font-weight:700;">02</span>
+                    AI agents search flights &amp; hotels
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.85rem;color:var(--text-dim);">
+                    <span style="color:var(--accent);font-family:var(--mono);font-weight:700;">03</span>
+                    Get a full itinerary instantly
+                </div>
+            </div>
+
+            <div>
+                <p
+                    style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.75rem;">
+                    Try asking:</p>
+                <div id="sampleChips" style="display:flex;flex-wrap:wrap;gap:0.5rem;"></div>
+            </div>
+        </div>
+
+        <!-- Chat column -->
+        <div>
+            <div class="chat-wrapper">
+                <div class="chat-header">
+                    <span class="chat-header-title">Wayfarer AI</span>
+                    <span class="chat-status">
+                        <span class="chat-status-dot"></span>
+                        Online
+                    </span>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Welcome message -->
+                    <div class="chat-message chat-message--bot">
+                        <div class="chat-meta">Wayfarer AI · Now</div>
+                        <div class="chat-bubble">
+                            Hey! I'm Wayfarer, your AI travel planner. 👋<br><br>
+                            Tell me where you want to go and I'll find you flights, hotels, and build a full itinerary.
+                            Try something like:<br><br>
+                            <em>"Plan a 5-day trip to Tokyo from NYC in October, budget $3000"</em>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-area">
+                    <textarea id="chatInput" class="chat-input" placeholder="Where do you want to go?" rows="1"
+                        aria-label="Travel query input"></textarea>
+                    <button id="chatSend" class="chat-send" aria-label="Send message">Send →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ─────────────────────────────────────── -->
+    <footer class="footer">
+        <div class="footer-logo">Wayfarer</div>
+        <div class="footer-copy">© 2026 · AI Travel Planner · Built with LangGraph + FastAPI</div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/static/script.js"></script>
+
+</body>
+
+</html>
