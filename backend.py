@@ -1,5 +1,6 @@
 import os
 import uuid
+import asyncio
 from urllib import response
 import certifi
 from dotenv import load_dotenv
@@ -23,8 +24,10 @@ from langchain_core.messages import(
     HumanMessage,
 )
 from langchain_groq import ChatGroq
-from tools.tavily_tool import tavily_search
+# from tools.tavily_tool import tavily_search
 from tools.flight_tool import search_flights
+
+from mcp_client_test import tavily_mcp_search
 
 # Database URL
 def get_database_url() -> str:
@@ -79,7 +82,10 @@ def flight_agent(state: TravelState):
 # HOTEL AGENT
 def hotel_agent(state: TravelState):
     query = f"Best hotels for {state['user_query']}"
-    hotel_results = tavily_search(query)
+    # hotel_results = tavily_search(query)
+
+    # Using the remote MCP server to fetch hotel results instead of the direct tavily_search custom function
+    hotel_results = asyncio.run(tavily_mcp_search(query))
 
     return {
         "hotel_results": hotel_results,

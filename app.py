@@ -10,6 +10,10 @@ from pydantic import BaseModel
 
 from backend import run_travel_agent
 
+# allows nested event loops for async calls in FastAPI
+import nest_asyncio
+nest_asyncio.apply()
+
 BASE_DIR = Path(__file__).resolve().parent
 
 app = FastAPI(
@@ -28,6 +32,12 @@ app.mount(
 templates = Jinja2Templates(
     directory=str(BASE_DIR / "templates")
 )
+
+
+class TravelRequest(BaseModel):
+    message: str
+    thread_id: str | None = None
+
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
